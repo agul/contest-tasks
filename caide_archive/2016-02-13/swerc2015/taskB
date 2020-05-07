@@ -1,0 +1,62 @@
+#include "Head.h"
+#include "IO/IO.h"
+
+using namespace std;
+
+int __;
+IO io;
+const int MOD = 1000000007;
+const int MAXN = 111111;
+
+struct Query {
+	char s[4];
+	int player;
+	int count;
+
+	Query() {}
+
+	void read() {
+		io >> s >> player >> count;
+		--player;
+	}
+
+};
+
+inline bool is_bad(char ch, char A, char B, char C) {
+	return ch == A || ch == B || ch == C;
+}
+
+void solve(istream& ins, ostream& out) {
+	int n;
+	io >> n;
+	vector<Query> q(n);
+	for (int i = 0; i < n; ++i) {
+		q[i].read();
+	}
+	int ans = 0;
+	for (char A = 'A'; A <= 'Z'; ++A) {
+		for (char B = A + 1; B <= 'Z'; ++B) {
+			for (char C = B + 1; C <= 'Z'; ++C) {
+				unordered_set<char> players[2];
+				bool ok = true;
+				for (int i = 0; i < n; ++i) {
+					int bad_people = 0;
+					int other = 0;
+					for (int j = 0; j < 2; ++j) {
+						char ch = q[i].s[j];
+						if (is_bad(ch, A, B, C)) {
+							++bad_people;
+						}
+						if (players[q[i].player ^ 1].count(ch)) {
+							++other;
+						}
+					}
+					if (q[i].count > 2 - other - bad_people) {
+						ok = false;
+						break;
+					}
+				}
+			}
+		}
+	}
+}

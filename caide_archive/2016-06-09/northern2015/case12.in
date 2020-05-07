@@ -1,0 +1,6 @@
+for k in range(n):
+    for x in range(k):
+        for y in range(x):
+            for z in range(y):
+                for q in range(k):
+                    lag

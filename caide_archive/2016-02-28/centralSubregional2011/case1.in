@@ -1,0 +1,8 @@
+6 2
+0 ADD 9
+1 CALL 4
+2 SUB 3
+3 RET
+4 NEG
+5 RET
+1 10 

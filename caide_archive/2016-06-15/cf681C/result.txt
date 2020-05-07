@@ -1,0 +1,5 @@
+4
+insert 0
+removeMin
+insert 3
+getMin 3

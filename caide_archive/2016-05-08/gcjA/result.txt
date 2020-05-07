@@ -1,0 +1,3 @@
+Case #1: BA BA
+Case #2: AC BA C BA
+Case #3: CC BA
