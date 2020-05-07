@@ -1,34 +1,32 @@
 #include "base/header.hpp"
+#include "containers/queue/cmp_queue.hpp"
+#include "maths/random.hpp"
 
 class TestTask {
 public:
 	void solve(std::istream& in, std::ostream& out) {
-		char ch = '$';
-		debug(ch);
+		const int kMaxn = 100;
+		CmpQueue<int> st(kMaxn);
+		std::vector<int> a;
 
-		double a = 2.0;
-		debug(a);
+		for (int i : range(kMaxn)) {
+			int x = Random::get();
 
-		int b = 3;
-		debug(b);
+			if (Random::get(3) == 0 && !st.empty()) {
+				a.erase(a.begin());
+				st.pop();
+			}
 
-		std::vector<int> x{1, 2, 3, 4};
-		std::vector<bool> y{true, false, true};
+			a.emplace_back(x);
+			st.push(x);
 
-		auto p = std::make_pair(x, y);
-		debug(std::make_pair(x, y));
+			out << st.min_value() << " " << *std::min_element(all(a)) << std::endl;
 
-		debug(x);
-		debug(y);
-		debug(p);
-
-		char s[] = "abc";
-		debug(s);
-
-		debug(std::vector<int>{1, 2, 3, 4, 5, 6});
+		}
 
 	}
 
+	static constexpr bool kUseCustomChecker = false;
 	bool check(std::string input, std::string expected_output, std::string actual_output) {
 		return true;
 	}

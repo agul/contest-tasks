@@ -1,5 +1,5 @@
 #include "../algolib/cpplib/base/header.hpp"
-#include "../algolib/cpplib/bitset.hpp"
+#include "containers/bitset.hpp"
 #include "../algolib/cpplib/maths/mod_int.hpp"
 
 const int MAXN = 3003;
