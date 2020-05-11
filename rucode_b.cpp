@@ -1,6 +1,6 @@
 #include "base/header.hpp"
 #include "base/functors/min.hpp"
-#include "segment_tree/top_down_segment_tree.hpp"
+#include "data_structures/segment_tree/top_down_segment_tree.hpp"
 
 struct ApplyUpdate : Applier<int> {
 	int operator()(const int& value, const int& update, const size_t left, const size_t right) const {

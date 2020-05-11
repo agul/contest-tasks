@@ -1,7 +1,6 @@
-#include <type_traits>
 #include "base/header.hpp"
 
-class TestTask {
+class RangeHppTest {
 public:
 
 	template<typename T>

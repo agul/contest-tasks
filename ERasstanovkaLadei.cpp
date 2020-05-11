@@ -1,8 +1,11 @@
 #include "base/header.hpp"
+#include "maths/maths.hpp"
+#include "maths/mod_int.hpp"
 
 class ERasstanovkaLadei {
 public:
-	void solve(std::istream& in, std::ostream& out) {
+
+	void solve_slow(std::istream& in, std::ostream& out) {
 		int n, k;
 		in >> n >> k;
 		int M = n * n;
@@ -64,6 +67,47 @@ public:
 		out << ans << std::endl;
 	}
 
+	static constexpr int MOD = 998244353;
+	using Int = ModInt<ll, MOD>;
+
+	void solve(std::istream& in, std::ostream& out) {
+		int n, k;
+		in >> n >> k;
+		if (k >= n) {
+			out << 0 << std::endl;
+			return;
+		}
+
+		const std::vector<Int> factorial = calc_factorial<Int>(n);
+		if (k == 0) {
+			out << factorial[n] << std::endl;
+			return;
+		}
+		k = n - k;
+
+		std::vector<Int> inverse_factorial;
+		for (const auto& x : factorial) {
+			inverse_factorial.emplace_back(x.inverse());
+		}
+
+		auto binom = [&factorial, &inverse_factorial](const int n, const int k) {
+			return factorial[n] * inverse_factorial[n - k] * inverse_factorial[k];
+		};
+
+		Int sum = 0;
+		for (int i : inclusiveRange(k)) {
+			const Int cur = binom(k, i) * binpow(Int{i}, n);
+			if (k % 2 != i % 2) {
+				sum -= cur;
+			} else {
+				sum += cur;
+			}
+		}
+		const Int ans = binom(n, k) * 2 * sum;
+		out << ans << std::endl;
+	}
+
+	static constexpr bool kUseCustomChecker = false;
 	bool check(std::string input, std::string expected_output, std::string actual_output) {
 		return true;
 	}
