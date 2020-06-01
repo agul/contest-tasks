@@ -1,5 +1,5 @@
 #include "base/header.hpp"
-#include "containers/queue/queue.hpp"
+#include "collections/queue/queue.hpp"
 
 class BOdnopolyusnieMagniti {
 public:

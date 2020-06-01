@@ -1,6 +1,6 @@
 #include "base/header.hpp"
 #include "graph/undirected_graph.hpp"
-#include "containers/queue/queue.hpp"
+#include "collections/queue/queue.hpp"
 
 class ERaspredelenieVesov {
 public:

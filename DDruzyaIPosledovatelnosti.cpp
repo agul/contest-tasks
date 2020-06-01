@@ -1,5 +1,5 @@
 #include "base/header.hpp"
-#include "containers/stack/stack.hpp"
+#include "collections/stack/stack.hpp"
 #include "data_structures/sparse_table.hpp"
 
 class DDruzyaIPosledovatelnosti {

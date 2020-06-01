@@ -42,6 +42,8 @@ public:
 
 
 	static constexpr size_t kGeneratedTestsCount = 0;
-	static void generate_test(std::ostream& out) {}
+	static constexpr bool kStopAfterFirstFail = false;
+	static void generate_test(std::ostream& test) {
+	}
 
 };

@@ -1,7 +1,10 @@
 #include "base/header.hpp"
+#include "collections/value_compressor.hpp"
 
 class BFeniksIKrasota {
 public:
+	static constexpr bool kWriteCaseNumber = false;
+	static constexpr bool kMultiTest = false;
 	void solve(std::istream& in, std::ostream& out) {
 		// out << "Case #" << ++test_id_ << ": ";
 		int testsCount;
@@ -12,15 +15,8 @@ public:
 			auto a = make_vector<int>(n, 0);
 			in >> a;
 
-			std::unordered_map<int, int> digits_pos;
-			std::vector<int> digits;
-			for (int i : range(n)) {
-				const int val = a[i];
-				if (digits_pos.find(val) == digits_pos.cend()) {
-					digits_pos[val] = digits.size();
-					digits.emplace_back(val);
-				}
-			}
+			auto digits = IntegralValueCompressor<int>(a);
+			debug(digits);
 
 			if (k < digits.size()) {
 				out << -1 << std::endl;
@@ -30,15 +26,16 @@ public:
 			int cur_digit = 0;
 			while (digits.size() < k) {
 				++cur_digit;
-				if (digits_pos.find(cur_digit) == digits_pos.cend()) {
-					digits_pos[cur_digit] = digits.size();
-					digits.emplace_back(cur_digit);
-				}
+				digits.add(cur_digit);
 			}
 
+			debug(digits);
+
 			for (int& x : a) {
-				x = digits_pos[x];
+				x = digits[x];
 			}
+
+			debug(a);
 
 			std::vector<int> ans;
 			std::vector<bool> used(n + 1, false);
@@ -83,18 +80,20 @@ public:
 
 			out << ans.size() << std::endl;
 			for (int x : ans) {
-				out << digits[x] << " ";
+				out << digits.get_by_id(x) << " ";
 			}
 			out << std::endl;
 		}
 	}
 
-	bool check(std::string input, std::string expected_output, std::string actual_output) {
+	static constexpr bool kUseCustomChecker = false;
+	bool check(std::istringstream in, std::istringstream jury, std::istringstream out) {
 		return true;
 	}
 
 
 	static constexpr size_t kGeneratedTestsCount = 0;
+	static constexpr bool kStopAfterFirstFail = false;
 	static void generate_test(std::ostream& test) {}
 
 private:
