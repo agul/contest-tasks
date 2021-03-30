@@ -1,26 +1,35 @@
 #include "base/header.hpp"
-#include "cpplib/data_structures/fenwick_tree/fenwick_tree.hpp"
+#include "maths/mod_int.hpp"
 
-class yosupo_static_range_sum {
+class BProductsOfMinMax {
 public:
 	static constexpr bool kWriteCaseNumber = false;
 	static constexpr bool kMultiTest = false;
-	void solve(std::istream& in, std::ostream& out) {
-		int n, q;
-		in >> n >> q;
-		std::vector<ll> a(n);
-		in >> a;
 
-		FenwickTreeSum<ll> fenwick_tree(a);
-		for (int i : range(q)) {
-			int x, y;
-			in >> x >> y;
-			out << fenwick_tree.query(x, y - 1) << std::endl;
-		}
+	using Int = ModInt<int, 998244353>;
+
+	void solve(std::istream& in, std::ostream& out) {
+        int n;
+        in >> n;
+        std::vector<Int> a(n);
+        in >> a;
+        sort(a);
+
+        Int ans = 0;
+        Int cur = 0;
+        Int last = 0;
+        for (int i : range(n)) {
+            cur *= 2;
+            cur -= last;
+            cur += a[i];
+            ans += a[i] * cur;
+            last = a[i];
+        }
+        out << ans << std::endl;
 	}
 
 
-	yosupo_static_range_sum() {}
+	BProductsOfMinMax() {}
 
 
 	static constexpr bool kUseCustomChecker = false;

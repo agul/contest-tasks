@@ -1,26 +1,15 @@
 #include "base/header.hpp"
-#include "cpplib/data_structures/fenwick_tree/fenwick_tree.hpp"
 
-class yosupo_static_range_sum {
+class GeometryTest {
 public:
 	static constexpr bool kWriteCaseNumber = false;
 	static constexpr bool kMultiTest = false;
 	void solve(std::istream& in, std::ostream& out) {
-		int n, q;
-		in >> n >> q;
-		std::vector<ll> a(n);
-		in >> a;
 
-		FenwickTreeSum<ll> fenwick_tree(a);
-		for (int i : range(q)) {
-			int x, y;
-			in >> x >> y;
-			out << fenwick_tree.query(x, y - 1) << std::endl;
-		}
 	}
 
 
-	yosupo_static_range_sum() {}
+	GeometryTest() {}
 
 
 	static constexpr bool kUseCustomChecker = false;

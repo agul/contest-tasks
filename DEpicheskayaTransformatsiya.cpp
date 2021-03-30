@@ -1,26 +1,28 @@
 #include "base/header.hpp"
-#include "cpplib/data_structures/fenwick_tree/fenwick_tree.hpp"
 
-class yosupo_static_range_sum {
+class DEpicheskayaTransformatsiya {
 public:
 	static constexpr bool kWriteCaseNumber = false;
-	static constexpr bool kMultiTest = false;
+	static constexpr bool kMultiTest = true;
 	void solve(std::istream& in, std::ostream& out) {
-		int n, q;
-		in >> n >> q;
-		std::vector<ll> a(n);
-		in >> a;
+        int n;
+        in >> n;
+        SafeUnorderedMap<int, int> cnt;
+        for (int x : range(n)) {
+            int cur;
+            in >> cur;
+            ++cnt[cur];
+        }
 
-		FenwickTreeSum<ll> fenwick_tree(a);
-		for (int i : range(q)) {
-			int x, y;
-			in >> x >> y;
-			out << fenwick_tree.query(x, y - 1) << std::endl;
-		}
+        int ans = n % 2;
+        for (const auto& it : cnt) {
+            umax(ans, std::max(0, it.second * 2 - n));
+        }
+        out << ans << std::endl;
 	}
 
 
-	yosupo_static_range_sum() {}
+	DEpicheskayaTransformatsiya() {}
 
 
 	static constexpr bool kUseCustomChecker = false;

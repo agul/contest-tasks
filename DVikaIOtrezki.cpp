@@ -1,6 +1,6 @@
 #include "base/header.hpp"
 #include "collections/value_compressor.hpp"
-#include "data_structures/fenwick_tree.hpp"
+#include "cpplib/data_structures/fenwick_tree/fenwick_tree.hpp"
 
 class DVikaIOtrezki {
 public:

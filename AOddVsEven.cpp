@@ -1,26 +1,24 @@
 #include "base/header.hpp"
-#include "cpplib/data_structures/fenwick_tree/fenwick_tree.hpp"
 
-class yosupo_static_range_sum {
+class AOddVsEven {
 public:
 	static constexpr bool kWriteCaseNumber = false;
-	static constexpr bool kMultiTest = false;
+	static constexpr bool kMultiTest = true;
 	void solve(std::istream& in, std::ostream& out) {
-		int n, q;
-		in >> n >> q;
-		std::vector<ll> a(n);
-		in >> a;
-
-		FenwickTreeSum<ll> fenwick_tree(a);
-		for (int i : range(q)) {
-			int x, y;
-			in >> x >> y;
-			out << fenwick_tree.query(x, y - 1) << std::endl;
-		}
+        ll n;
+        in >> n;
+        if (n % 4 != 0 && n % 2 == 0) {
+            out << "Same" << std::endl;
+        }
+        else if (n % 4 == 0) {
+            out << "Even" << std::endl;
+        } else {
+            out << "Odd" << std::endl;
+        }
 	}
 
 
-	yosupo_static_range_sum() {}
+	AOddVsEven() {}
 
 
 	static constexpr bool kUseCustomChecker = false;

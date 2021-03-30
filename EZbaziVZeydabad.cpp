@@ -1,5 +1,5 @@
 #include "base/header.hpp"
-#include "data_structures/fenwick_tree.hpp"
+#include "cpplib/data_structures/fenwick_tree/fenwick_tree.hpp"
 
 class EZbaziVZeydabad {
 public:

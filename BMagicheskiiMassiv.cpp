@@ -1,26 +1,30 @@
 #include "base/header.hpp"
-#include "cpplib/data_structures/fenwick_tree/fenwick_tree.hpp"
 
-class yosupo_static_range_sum {
+class BMagicheskiiMassiv {
 public:
 	static constexpr bool kWriteCaseNumber = false;
 	static constexpr bool kMultiTest = false;
 	void solve(std::istream& in, std::ostream& out) {
-		int n, q;
-		in >> n >> q;
-		std::vector<ll> a(n);
-		in >> a;
+        int n;
+        in >> n;
+        std::vector<int> a(n);
+        in >> a;
 
-		FenwickTreeSum<ll> fenwick_tree(a);
-		for (int i : range(q)) {
-			int x, y;
-			in >> x >> y;
-			out << fenwick_tree.query(x, y - 1) << std::endl;
-		}
+        ll ans = 0;
+        int index = 0;
+        while (index < n) {
+            const int start = index;
+            while (index < n && a[start] == a[index]) {
+                ++index;
+            }
+            const ll len = index - start;
+            ans += len * (len + 1) / 2;
+        }
+        out << ans << std::endl;
 	}
 
 
-	yosupo_static_range_sum() {}
+	BMagicheskiiMassiv() {}
 
 
 	static constexpr bool kUseCustomChecker = false;
